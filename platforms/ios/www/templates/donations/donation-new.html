@@ -1,0 +1,193 @@
+<ion-view>
+  <ion-header-bar class="bar-positive">
+    <h1 class="title"><img class="title-image" src="img/cc-logo.png" width="123" height="43" /></h1>
+  </ion-header-bar>
+  <form name="donationForm" novalidate>
+    <ion-content class="padding">
+      <div class="list list-inset">
+        <!-- <label class="item item-input">
+          <input type="text" ng-value="donation.title">
+        </label> -->
+        <label class="item item-input"
+               ng-class="{ 'has-error' : donationForm.donation_category_select.$invalid && donationForm.donation_category_select.$touched}">
+
+           <ion-autocomplete name= "donation_category_select"
+                             ng-model="donation.category_id"
+                             items-method="callbackMethod(query)"
+                             items-clicked-method="categorySelected(callback)"
+                             item-view-value-key="name"
+                             item-value-key="id"
+                             placeholder= "Please select the type of item..."
+                             required/>
+
+        </label>
+        <div class="form-errors"
+             ng-show="donationForm.donation_category_select.$touched"
+             ng-messages="donationForm.donation_category_select.$error"
+             ng-messages-include="templates/form-errors.html">
+          <!-- Overwrite errors by placing them here -->
+          <!-- <div class="form-error" ng-message="maxlength">This field is must be less than 10 characters</div> -->
+        </div>
+        <div class="padding" style="text-align:center;">
+          Item not listed? Email
+          <a href="mailto:support@creativechatter.com">support@creativechatter.com</a>
+        </div>
+
+<!-- Estimated Value Input -->
+        <label class="item item-input"
+               ng-class="{ 'has-error' : donationForm.donation_value.$invalid  && donationForm.donation_value.$touched}">
+          <input type="number"
+                 name ="donation_value"
+                 placeholder="Estimated Value"
+                 step=.01
+                 ng-model="donation.value"
+                 required>
+        </label>
+        <div class="form-errors"
+             ng-show="donationForm.donation_value.$touched"
+             ng-messages="donationForm.donation_value.$error"
+             ng-messages-include="templates/form-errors.html">
+        </div>
+
+<!-- Qty. Input -->
+        <label class="item item-input"
+               ng-class="{ 'has-error' : donationForm.donation_qty.$invalid  && donationForm.donation_qty.$touched}">
+          <input type="number"
+                 name="donation_qty"
+                 placeholder="Quantity"
+                 ng-model="donation.quantity"
+                 required>
+        </label>
+        <div class="form-errors"
+             ng-show="donationForm.donation_qty.$touched"
+             ng-messages="donationForm.donation_qty.$error"
+             ng-messages-include="templates/form-errors.html">
+        </div>
+
+<!-- Description Input -->
+        <label class="item item-input"
+               ng-class="{ 'has-error' : donationForm.description.$invalid  && donationForm.description.$touched}">
+          <input type="text"
+                 name="description"
+                 placeholder="Brief description of item"
+                 ng-model="donation.description"
+                 required>
+        </label>
+        <div class="form-errors"
+             ng-show="donationForm.description.$touched"
+             ng-messages="donationForm.description.$error"
+             ng-messages-include="templates/form-errors.html">
+        </div>
+      </div>
+
+      <div class="list">
+<!-- Street Name Input -->
+        <label class="item item-input"
+               ng-class="{ 'has-error' : donationForm.street_name.$invalid}">
+          <input name ="street_name"
+                 type="text"
+                 placeholder="Street Address"
+                 ng-model= "donation.location_attributes.street"
+                 required>
+        </label>
+        <div class="form-errors"
+             ng-show="donationForm.street_name.$touched"
+             ng-messages="donationForm.street_name.$error"
+             ng-messages-include="templates/form-errors.html">
+        </div>
+
+<!-- City Input -->
+        <label class="item item-input"
+               ng-class="{ 'has-error' : donationForm.city.$invalid}">
+          <input type="text"
+                 name="city"
+                 placeholder="City"
+                 ng-model="donation.location_attributes.city"
+                 required>
+        </label>
+        <div class="form-errors"
+             ng-show="donationForm.city.$touched"
+             ng-messages="donationForm.city.$error"
+             ng-messages-include="templates/form-errors.html">
+        </div>
+
+<!-- Zipcode Input -->
+        <label class="item item-input"
+               ng-class="{ 'has-error' : donationForm.zipcode.$invalid}">
+          <input type="text"
+                 name="zipcode"
+                 placeholder="Zipcode"
+                 ng-model="donation.location_attributes.postal_code"
+                 required>
+        </label>
+        <div class="form-errors"
+             ng-show="donationForm.zipcode.$touched"
+             ng-messages="donationForm.zipcode.$error"
+             ng-messages-include="templates/form-errors.html">
+        </div>
+
+<!-- State Input -->
+        <div class="list">
+          <label class="item item-input item-select"
+                 ng-class="{ 'has-error' : donationForm.state.$invalid && donationForm.state.$touched}">
+            <div class="input-label">
+              State
+            </div>
+            <select name="state" ng-model="donation.location_attributes.state" required>
+              <option>Blue</option>
+              <option>Green</option>
+              <option>Red</option>
+            </select>
+          </label>
+          <div class="form-errors"
+               ng-show="donationForm.state.$touched"
+               ng-messages="donationForm.state.$error"
+               ng-messages-include="templates/form-errors.html">
+          </div>
+        </div>
+      </div>
+
+      <!-- Upload Image Input -->
+      <img id ="uploading_image" src="" height="300" width="100%" style="display:none;" />
+      
+      <div class="list">
+        <!-- TODO Testing for showing image -->
+        <!-- <img ng-show="imgURI !== undefined" ng-src="{{imgURI}}">
+        <img ng-show="imgURI === undefined" ng-src="http://placehold.it/300x300"> -->
+        <a class="item item-icon-left item-icon-right" href="#" ng-click="takePicture()">
+          <i class="icon ion-plus-round"></i>
+            Upload Image Of Item
+          <i class="icon ion-camera"></i>
+        </a>
+        <li class="item item-checkbox">
+          <label class="checkbox">
+            <input type="checkbox" ng-disabled="true">
+          </label>
+          Flag For Driver Pickup - COMING SOON!
+        </li>
+        <div>
+          <ion-checkbox ng-model="termsCheckbox">
+            Accept terms and conditions
+          </ion-checkbox>
+        </div>
+        <div class="padding" style="text-align:center;">
+          View our
+          <a href='#' ng-click='openModal()'>Terms and Conditions</a>
+        </div>
+      </div>
+      <div>
+        <button type="submit" class="button button-block button-positive" ng-disabled="donationForm.$invalid || termsCheckbox==false" ng-click="addDonation()">
+          Post Item
+        </button>
+      </div>
+
+    </ion-content>
+  </form>
+</ion-view>
+
+
+<script id="templates/form-errors.html" type="text/ng-template">
+  <div class="form-error" ng-message="required">This field is required.</div>
+  <div class="form-error" ng-message="minlength">This field is must be at least 5 characters.</div>
+  <div class="form-error" ng-message="maxlength">This field is must be less than 50 characters</div>
+</script>

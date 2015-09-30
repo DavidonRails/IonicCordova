@@ -1,0 +1,41 @@
+<ion-view>
+  <ion-header-bar class="bar-positive">
+    <button class="button icon ion-arrow-left-c" ng-click="$ionicGoBack()"> Back </button>
+    <h1 class="title"><img class="title-image" src="img/cc-logo.png" width="123" height="43" /></h1>
+  </ion-header-bar>
+  <ion-content class="padding">
+  <div class="list card">
+    <div class="item item-avatar">
+      <img src="http://placehold.it/140x100.jpg">
+      <h2>{{donation.title}}</h2>
+      <p>November 05, 1955</p>
+    </div>
+
+    <div class="item item-body">
+      <img class="full-image" src="http://placehold.it/350x150.jpg">
+      <p>
+        {{donation.description}}
+      </p>
+      <p>
+        <a href="#" class="subdued">1 Like</a>
+        <a href="#" class="subdued">5 Comments</a>
+      </p>
+    </div>
+
+    <div class="item tabs tabs-secondary tabs-icon-left">
+      <a class="tab-item" href="#">
+        <i class="icon ion-thumbsup"></i>
+        Like
+      </a>
+      <a class="tab-item" href="#">
+        <i class="icon ion-chatbox"></i>
+        Comment
+      </a>
+      <a class="tab-item" href="#">
+        <i class="icon ion-share"></i>
+        Share
+      </a>
+    </div>
+  </div>
+</ion-content>
+</ion-view>

@@ -1,0 +1,44 @@
+<ion-view>
+  <ion-header-bar class="bar-positive">
+    <h1 class="title"><img class="title-image" src="img/cc-logo.png" width="123" height="43" /></h1>
+  </ion-header-bar>
+  <ion-content class="padding">
+    <div class="list list-inset">
+      <label class="item item-input">
+        <input type="email" placeholder="Email" disabled ng-model="data.username">
+      </label>
+      <label class="item item-input">
+        <input type="password" placeholder="Password" ng-model="data.password">
+      </label>
+      <label class="item item-input">
+        <input type="password" placeholder="Re-Enter Password" ng-model="data.password_confirmation">
+      </label>
+    </div>
+    <div class="list list-inset">
+      <label class="item item-input">
+        <input type="text" placeholder="First Name" ng-model="data.first_name">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Last Name" ng-model="data.last_name">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Street Address" ng-model="data.street_address">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="City" ng-model="data.city">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="State" ng-model="data.state">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Zipcode" ng-model="data.zipcode">
+      </label>
+    </div>
+    <button class="button button-block button-positive">
+      Update
+    </button>
+    <button class="button button-block button-positive">
+      Sign Out
+    </button>
+  </ion-content>
+</ion-view>
